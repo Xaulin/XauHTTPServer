@@ -9,7 +9,7 @@ void disCon(x::Socket& socket){
 bool newCon(x::Socket& socket){
 	printf("<%s:%d>: Connected\n", socket.getIp(), socket.s);
 	socket.async(read);
-	socket.async(disCon);
+	
 	return true;
 }
 
@@ -17,6 +17,7 @@ int main(){
 	x::Socket::startup();
 	x::Socket server(666);
 	server.async(newCon);
+	server.async(disCon);
 
 	return x::msgLoop();
 }
